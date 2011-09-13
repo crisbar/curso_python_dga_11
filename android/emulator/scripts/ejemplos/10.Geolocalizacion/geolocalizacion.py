@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import android
 from time import sleep
 

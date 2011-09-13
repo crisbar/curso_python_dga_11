@@ -35,7 +35,7 @@ def main():
             developerKey="AIzaSyDRRpR3GS1F1_jKNNM9HCNd2wJQyPG3oN0")
 
   res = service.cse().list(
-      q='lectures',
+      q='python',
       cx='017576662512468239146:omuauf_lfve',
     ).execute()
   pprint.pprint(res)

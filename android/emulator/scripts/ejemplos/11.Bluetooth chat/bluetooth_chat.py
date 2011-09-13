@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import android
 import time
 
 droid = android.Android()
 droid.toggleBluetoothState(True)
-droid.dialogCreateAlert('¿Eres el servidoe?')
+droid.dialogCreateAlert('¿Eres el servidor?')
 droid.dialogSetPositiveButtonText('Si')
 droid.dialogSetNegativeButtonText('No')
 droid.dialogShow()

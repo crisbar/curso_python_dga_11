@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Say chat messages aloud as they are received."""
 
 __author__ = 'Damon Kohler <damonkohler@gmail.com>'
