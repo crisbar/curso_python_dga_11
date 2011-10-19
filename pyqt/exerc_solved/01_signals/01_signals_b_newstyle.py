@@ -4,18 +4,15 @@
 '''
 @author: Luis Perez
 
-Ejercicio de uso de señales tipo "shortcut"
+Ejercicio de emision de señales propias.
 '''
 
 import sys
 from PyQt4 import QtGui, QtCore
 
+class UpdateButton(QtGui.QPushButton):
 
-class CustomDial(QtGui.QDial):
-
-    def update_dial(self): 
-        curval = self.value()
-        self.setValue(curval + 10)
+    counterUpdated = QtCore.pyqtSignal(int)
 
 
 class PushUpdateDial(QtGui.QWidget):
@@ -23,22 +20,24 @@ class PushUpdateDial(QtGui.QWidget):
     def __init__(self):
         super(PushUpdateDial, self).__init__()
         self.initUI()
+        self.curval = 0
     
     def update_dial(self):
-        self.emit(QtCore.SIGNAL("counterUpdated"))
+        self.curval = self.curval + 10
+        self.btn.counterUpdated.emit(self.curval)
 
     def initUI(self):
 
-        dial = CustomDial()
-        btn = QtGui.QPushButton("Pulsame!")
+        dial = QtGui.QDial()
+        self.btn = UpdateButton("Pulsame!")
 
         vbox = QtGui.QVBoxLayout()
-        vbox.addWidget(btn)
+        vbox.addWidget(self.btn)
         vbox.addWidget(dial)
 
         self.setLayout(vbox)
-        self.connect(btn, QtCore.SIGNAL('clicked()'), self.update_dial)
-        self.connect(self, QtCore.SIGNAL('counterUpdated'), dial.update_dial)
+        self.btn.clicked.connect(self.update_dial)
+        self.btn.counterUpdated.connect(dial.setValue)
 
         self.setWindowTitle('Signals y slots')
         self.resize(250, 150)

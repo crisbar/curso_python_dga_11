@@ -4,7 +4,7 @@
 '''
 @author: Luis Perez
 
-Ejercicio de emision de señales propias.
+Ejercicio de utilización simple de señales y slots
 '''
 
 import sys
@@ -19,21 +19,20 @@ class PushUpdateDial(QtGui.QWidget):
         self.curval = 0
     
     def update_dial(self):
-        self.curval = self.curval + 10
-        self.emit(QtCore.SIGNAL("counterUpdated"), self.curval)
+        curval = self.dial.value()
+        self.dial.setValue(curval + 10)
 
     def initUI(self):
 
-        dial = QtGui.QDial()
+        self.dial = QtGui.QDial()
         btn = QtGui.QPushButton("Pulsame!")
 
         vbox = QtGui.QVBoxLayout()
         vbox.addWidget(btn)
-        vbox.addWidget(dial)
+        vbox.addWidget(self.dial)
 
         self.setLayout(vbox)
-        self.connect(btn, QtCore.SIGNAL('clicked()'), self.update_dial)
-        self.connect(self, QtCore.SIGNAL('counterUpdated'), dial.setValue)
+        btn.clicked.connect(self.update_dial)
 
         self.setWindowTitle('Signals y slots')
         self.resize(250, 150)

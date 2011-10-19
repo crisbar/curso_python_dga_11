@@ -31,8 +31,8 @@ class GettingEventSenderExample(QtGui.QWidget):
         vbox.addLayout(hbox)
         vbox.addWidget(self.output)
 
-        self.connect(button1, QtCore.SIGNAL('clicked()'), self.buttonClicked)
-        self.connect(button2, QtCore.SIGNAL('clicked()'), self.buttonClicked)            
+        button1.clicked.connect(self.buttonClicked)
+        button2.clicked.connect(self.buttonClicked)
 
         self.setWindowTitle('Getting event receiver')
         self.setLayout(vbox)
