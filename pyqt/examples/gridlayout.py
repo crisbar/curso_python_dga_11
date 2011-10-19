@@ -24,11 +24,11 @@ class GridLayoutEx(QtGui.QWidget):
         names = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '', '0', '']
 
         grid = QtGui.QGridLayout()
-        for i in range(0,3):
+        for i in range(0,4):
             for j in range(0,3):
                 name = names[i * 3 + j]
                 if name == '':
-                    grid.addWidget(QtGui.QLabel(''), 0, 2)
+                    grid.addWidget(QtGui.QLabel(''), i, j)
                 else: 
                     button = QtGui.QPushButton(name)
                     grid.addWidget(button, i, j)
